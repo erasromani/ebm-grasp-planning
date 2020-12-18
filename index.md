@@ -1,4 +1,4 @@
-**Abstract -** State of the art grasp planning techniques [1]-[3] use a two-stage approach in which scene information is fed to a grasp generator network and the sampled grasp is fed to an evaluator network to both estimate the probability of grasp success and refine the grasp. The key issue with these techniques is that the two stages are disjointed and act independently because no back propagation of gradients takes place between the two networks. This work is motivated by bridging the gap between grasp sampling, evaluation, and refinement with energy-based models. Given a scene, a grasp can be generated, evaluated, and refined in one shot by descending down the energy manifold. Using a contrastive approach, the energy-based model was trained on a subset of the Dexnet 2.0 dataset [1] with a noise contrastive estimation loss function [5]-[7]. Results suggest the energy-based model is able to generalize to new scenes, differentiate good from bad grasps, and generate viable grasps.
+**Abstract:** State of the art grasp planning techniques [1]-[3] use a two-stage approach in which scene information is fed to a grasp generator network and the sampled grasp is fed to an evaluator network to both estimate the probability of grasp success and refine the grasp. The key issue with these techniques is that the two stages are disjointed and act independently because no back propagation of gradients takes place between the two networks. This work is motivated by bridging the gap between grasp sampling, evaluation, and refinement with energy-based models. Given a scene, a grasp can be generated, evaluated, and refined in one shot by descending down the energy manifold. Using a contrastive approach, the energy-based model was trained on a subset of the Dexnet 2.0 dataset [1] with a noise contrastive estimation loss function [5]-[7]. Results suggest the energy-based model is able to generalize to new scenes, differentiate good from bad grasps, and generate viable grasps.
 
 ## Introduction
 Grasping has been a long-standing challenge in robotics with a wide range of real-world application in manufacturing, logistics, and healthcare. Although much progress has been made toward improving generalizability of grasp planning techniques to novel objects over the past few years, the performance of such techniques is not yet at the level required for deployment in industry. State of the art grasp planning techniques [1]-[3] use a two-stage approach, as depicted in Figure 1, in which scene information is fed to a grasp generator network and the sampled grasp is fed to an evaluator network to both estimate the probability of grasp success and refine the grasp. The key issue with these techniques is that the two stages are disjointed and act independently because no back propagation of gradients takes place between the two networks. This work is motivated by bridging the gap between grasp sampling, evaluation, and refinement with energy-based models. 
@@ -13,9 +13,6 @@ Grasping has been a long-standing challenge in robotics with a wide range of rea
 
 ## Method
 Energy-based models comprise of a surface manifold which associates high energy to negative samples and low energy to positive samples. In this work, a positive and negative sample is given by a grasp with a high and low probability of success respectively. Upon inference, a grasp can be sampled at random as shown in Figure 2. The energy of the sampled grasp is given by the energy manifold and is associated with the quality of the grasp. The sampled grasp can be refined by descending down the energy manifold towards regions of higher quality grasps. Gasps with relatively high probability of success are found at the local minima of the energy manifold. Note that the energy can be transformed into a probability of grasp success by the Gibbs-Boltzmann distribution but calculating the normalizing partition function may be intractable [4]. The energy formulation therefore allows for representation of complex distribution that may be difficult to represent with probabilistic methods.
-
-![ebm-inference](https://erasromani.github.io/ebm-grasp-planning/images/ebm-inference.png)
-*Figure 2: Inference with energy-based models for grasp planning such that grasps are sampled at random, evaluated by the energy value, and refined by descending down the energy manifold toward regions of higher quality grasps*
 
 <figure>
   <img src="https://erasromani.github.io/ebm-grasp-planning/images/ebm-inference.png" alt="ebm-inference"/>
@@ -32,9 +29,6 @@ was used where \tau is the …
 ## Experiment Setup
 A subset of 220,000 examples from the Dexnet 2.0 dataset [1] was used for this work with a 90%/10% split for the training and validation set respectively. The Dexnet 2.0 dataset comprises of a synthetic dataset of 6.7 million depth images and grasps generated from 1,500 unique 3D object models. Figure 3 depicts a sample of the dataset for one object. Note that each depth image is 32 by 32 pixels with one channel while each grasp consists of a 4-dimensional grasp vector given by [grasp_center_row, grasp_center_column, grasp_depth, grasp_quality] where grasp quality is a binary representation of grasp success, 1 for a positive sample with high probability of success and 0 for a negative sample low probability of success. 
 
-![dexnet-2.0](https://erasromani.github.io/ebm-grasp-planning/images/dexnet-2.0.png)
-*Figure 3: Visualization of the Dexnet 2.0 dataset for one object [1]*
-
 <figure>
   <img src="https://erasromani.github.io/ebm-grasp-planning/images/dexnet-2.0.png" alt="dexnet-2.0"/>
   <figcaption>Figure 3: Visualization of the Dexnet 2.0 dataset for one object [1]</figcaption>
@@ -42,8 +36,10 @@ A subset of 220,000 examples from the Dexnet 2.0 dataset [1] was used for this w
 
 A relatively simple network architecture was used for the energy-based model as shown in Figure 4. The depth image is fed into a convolutional feature extractor comprising of four convolutional layers, each made up of a 2D convolution followed by a relu non-linearity and batch-normalization.  The output channels for each layer are 16, 28, 129, and 120 channels respectively. The kernel size of all convolutions is 3 by 3 except for the first layer which has a size of 5 by 5. Similarly, the stride of all convolutions is 2 except for the first layer which has a stride of 1. All features outputted by the feature extractor are flattened into a 1028-dimensional vector. The grasp input is fed to a repeat module which simply expands the 4-dimensional input vector into 1028 dimensions by repeating the grasp vector 256 times. The resulting repeated vector is concatenated with the flattened feature extractor output before being fed into a three layer fully connected network with 8, 9, and 10 output activations respectively. Each layer of the fully connected network consists of a linear layer followed by a relu activation function and a dropout module. The final output of the network is the energy.
 
-![network](https://github.com/erasromani/ebm-grasp-planning/blob/gh-pages/images/network.png)
-*Figure 4: Network architecture for the energy-based model*
+<figure>
+  <img src="https://erasromani.github.io/ebm-grasp-planning/images/network.png" alt="network"/>
+  <figcaption>Figure 4: Network architecture for the energy-based model</figcaption>
+</figure>
 
 Several transformations were applied to the data before being fed into the network. During training, the grasp angle was first randomly rotated by 180 degrees with a probability of 0.5. This was done such that the resulting energy surface is symmetric across the grasp angle axis. Both the grasp and depth image were then normalized by subtracting from the mean and dividing by the standard deviation.  During validation, only data normalization was applied. 
 
@@ -52,8 +48,10 @@ In order to evaluate network performance throughout training, an alignment metri
 ## Results
 Figure 5 shows the resulting training curves after 500 epochs of training for 5 different experiments. Experiments only differed by the temperature hyperparameter chosen to study the impact of temperature on training and the resulting energy manifold. 
 
-![training-curves](https://erasromani.github.io/ebm-grasp-planning/images/training-curves.png)
-*Figure 5: Training curves for energy-based model training where \tau is the temperature term in the noise contrastive estimation loss function*
+<figure>
+  <img src="https://erasromani.github.io/ebm-grasp-planning/images/training-curves.png" alt="training-curves"/>
+  <figcaption>Figure 5: Training curves for energy-based model training where \tau is the temperature term in the noise contrastive estimation loss function</figcaption>
+</figure>
 
 | τ | Contrastive Loss | Alignment (%) |
 | :---: | :---: | :---: |
