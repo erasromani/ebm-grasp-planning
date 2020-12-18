@@ -17,8 +17,16 @@ Energy-based models comprise of a surface manifold which associates high energy 
 ![ebm-inference](https://erasromani.github.io/ebm-grasp-planning/images/ebm-inference.png)
 *Figure 2: Inference with energy-based models for grasp planning such that grasps are sampled at random, evaluated by the energy value, and refined by descending down the energy manifold toward regions of higher quality grasps*
 
+<figure>
+  <img src="https://erasromani.github.io/ebm-grasp-planning/images/ebm-inference.png" alt="ebm-inference"/>
+  <figcaption>Figure 2: Inference with energy-based models for grasp planning such that grasps are sampled at random, evaluated by the energy value, and refined by descending down the energy manifold toward regions of higher quality grasps</figcaption>
+</figure>
+
+
 Using a contrastive approach, the energy-based model can be trained by pushing up on energies of negative samples and pushing down on energies of positive samples. A wide variety of loss functions can be used for such a contrastive approach. In this work, the noise contrastive estimation loss function [5]-[7] given by
+
 ![nce-loss](https://erasromani.github.io/ebm-grasp-planning/images/nce-loss.png)
+
 was used where \tau is the …
 
 ## Experiment Setup
@@ -26,6 +34,11 @@ A subset of 220,000 examples from the Dexnet 2.0 dataset [1] was used for this w
 
 ![dexnet-2.0](https://erasromani.github.io/ebm-grasp-planning/images/dexnet-2.0.png)
 *Figure 3: Visualization of the Dexnet 2.0 dataset for one object [1]*
+
+<figure>
+  <img src="https://erasromani.github.io/ebm-grasp-planning/images/dexnet-2.0.png" alt="dexnet-2.0"/>
+  <figcaption>Figure 3: Visualization of the Dexnet 2.0 dataset for one object [1]</figcaption>
+</figure>
 
 A relatively simple network architecture was used for the energy-based model as shown in Figure 4. The depth image is fed into a convolutional feature extractor comprising of four convolutional layers, each made up of a 2D convolution followed by a relu non-linearity and batch-normalization.  The output channels for each layer are 16, 28, 129, and 120 channels respectively. The kernel size of all convolutions is 3 by 3 except for the first layer which has a size of 5 by 5. Similarly, the stride of all convolutions is 2 except for the first layer which has a stride of 1. All features outputted by the feature extractor are flattened into a 1028-dimensional vector. The grasp input is fed to a repeat module which simply expands the 4-dimensional input vector into 1028 dimensions by repeating the grasp vector 256 times. The resulting repeated vector is concatenated with the flattened feature extractor output before being fed into a three layer fully connected network with 8, 9, and 10 output activations respectively. Each layer of the fully connected network consists of a linear layer followed by a relu activation function and a dropout module. The final output of the network is the energy.
 
