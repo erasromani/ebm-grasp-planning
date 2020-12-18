@@ -21,6 +21,10 @@ Using a contrastive approach, the energy-based model can be trained by pushing u
 
 ![nce-loss](https://erasromani.github.io/ebm-grasp-planning/images/nce-loss.png)
 
+{% raw %}
+$$a^2 + b^2 = c^2$$ --> note that all equations between these tags will not need escaping! 
+{% endraw %}
+ 
 was used where \tau is the …
 
 ## Experiment Setup
