@@ -87,9 +87,7 @@ Figure 5 shows the resulting training curves after 500 epochs of training for 5 
   </tbody>
 </table>
 
-Results suggest that although higher temperature may yield slightly better performance for the training set, it doesn’t yield better performance for the validation set. The temperature term therefore has no significant impact on model performance.
-
-Higher temperatures rescale the energy such that a larger number of negative samples contribute to the denominator of the loss function. In doing so, the system pushes up on multiple negative samples throughout each training iteration. The zero temperatures limit effectively yield a system that only pushes up on the most of offending negative sample with the lowest energy.
+Higher temperatures rescale the energy such that a larger number of negative samples contribute to the denominator of the loss function. In doing so, the system pushes up on multiple negative samples throughout each training iteration. The zero temperatures limit effectively yield a system that only pushes up on the most of offending negative sample with the lowest energy. Results suggest that \\( \tau = 100 \\) yields the best performance as highlighted in Table 1. 
 
 <figure align="center">
   <img src="https://erasromani.github.io/ebm-grasp-planning/images/energy-distribution.png" alt="energy-distribution"/>
