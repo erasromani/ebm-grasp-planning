@@ -102,6 +102,7 @@ Figure 6 shows the outputted energy distribution for the validation set associat
 </figure>
 
 The left side of Figure 7 shows pairs of grasp and depth image associated with low energy while right side shows pairs associated with high energy. Note that high energies correspond to negative samples while low energies correspond to positive samples.
+
 Now that we have a trained energy-based model, we can perform inference by sampling a grasp at random and descending down the energy manifold to a grasp with a high probability of success. Figure 9 shows contours of the energy manifold across different grasp dimensions centered on a valid or high-quality grasp marked as a red dot. The associated depth image and valid grasp is depicted in Figure 8. Note that the energy forms a local minimum near the region of the high-quality grasps. Also note that local minimum regions of the energy manifold are invariant to 180-degree rotations about the grasp axis as expected.
 
 <figure align="center">
