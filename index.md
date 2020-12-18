@@ -96,23 +96,30 @@ Results suggest that although higher temperature may yield slightly better perfo
 
 Higher temperatures rescale the energy such that a larger number of negative samples contribute to the denominator of the loss function. In doing so, the system pushes up on multiple negative samples throughout each training iteration. The zero temperatures limit effectively yield a system that only pushes up on the most of offending negative sample with the lowest energy.
 
-![energy-distribution](https://erasromani.github.io/ebm-grasp-planning/images/energy-distribution.png)
-
-*Figure 6: Outputted energy distribution of the energy-based model trained with τ = 100 given the validation set*
+<figure>
+  <img src="https://erasromani.github.io/ebm-grasp-planning/images/energy-distribution.png" alt="energy-distribution"/>
+  <figcaption>Figure 6: Outputted energy distribution of the energy-based model trained with τ = 100 given the validation set</figcaption>
+</figure>
 
 Figure 6 shows the outputted energy distribution for the validation set associated with the model trained with temperature equal to 100. Note that the two distributions started out similar but throughout training, the system was able to separate the two distributions by pushing up on energies of negative samples and pushing down on energies of positive samples through minimization of the contrastive loss. 
 
-![high-vs-low-energy](https://erasromani.github.io/ebm-grasp-planning/images/high-vs-low-energy.png)
-*Figure 7: Sample set of depth image and grasp pairs associated with low energy (energy < 0) and high energy (energy > 0)*
+<figure>
+  <img src="https://erasromani.github.io/ebm-grasp-planning/images/high-vs-low-energy.png" alt="high-vs-low-energy"/>
+  <figcaption>Figure 7: Sample set of depth image and grasp pairs associated with low energy (energy < 0) and high energy (energy > 0)</figcaption>
+</figure>
 
 The left side of Figure 7 shows pairs of grasp and depth image associated with low energy while right side shows pairs associated with high energy. Note that high energies correspond to negative samples while low energies correspond to positive samples.
 Now that we have a trained energy-based model, we can perform inference by sampling a grasp at random and descending down the energy manifold to a grasp with a high probability of success. Figure 9 shows contours of the energy manifold across different grasp dimensions centered on a valid or high-quality grasp marked as a red dot. The associated depth image and valid grasp is depicted in Figure 8. Note that the energy forms a local minimum near the region of the high-quality grasps. Also note that local minimum regions of the energy manifold are invariant to 180-degree rotations about the grasp axis as expected.
 
-![inference-example](https://erasromani.github.io/ebm-grasp-planning/images/inference-example.png)
-*Figure 8: Depth image and grasp pair associated with energy manifold contour shown in Figure 9*
+<figure>
+  <img src="https://erasromani.github.io/ebm-grasp-planning/images/inference-example.png" alt="inference-example"/>
+  <figcaption>Figure 8: Depth image and grasp pair associated with energy manifold contour shown in Figure 9</figcaption>
+</figure>
 
-![energy-contours](https://erasromani.github.io/ebm-grasp-planning/images/energy-contours.png)
-*Figure 9: Energy manifold contours along various grasp axis associated with the depth image and grasp pair shown in Figure 8*
+<figure>
+  <img src="https://erasromani.github.io/ebm-grasp-planning/images/energy-contours.png" alt="energy-contours"/>
+  <figcaption>Figure 9: Energy manifold contours along various grasp axis associated with the depth image and grasp pair shown in Figure 8</figcaption>
+</figure>
 
 The video below shows examples of grasp generation by gradient decent on the energy manifold. Note that the resulting grasps appear to be valid grasps.
 
