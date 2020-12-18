@@ -1,4 +1,4 @@
-{% include mathjax.html %}
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 In N-dimensional simplex noise, the squared kernel summation radius $r^2$ is $\frac 1 2$
 for all values of N. This is because the edge length of the N-simplex $s = \sqrt {\frac {N} {N + 1}}$
@@ -29,10 +29,6 @@ Energy-based models comprise of a surface manifold which associates high energy 
 Using a contrastive approach, the energy-based model can be trained by pushing up on energies of negative samples and pushing down on energies of positive samples. A wide variety of loss functions can be used for such a contrastive approach. In this work, the noise contrastive estimation loss function [5]-[7] given by
 
 ![nce-loss](https://erasromani.github.io/ebm-grasp-planning/images/nce-loss.png)
-
-{% raw %}
-$$a^2 + b^2 = c^2$$ --> note that all equations between these tags will not need escaping! 
-{% endraw %}
  
 was used where \tau is the …
 
