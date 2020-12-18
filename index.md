@@ -50,7 +50,7 @@ Figure 5 shows the resulting training curves after 500 epochs of training for 5 
   <figcaption>Figure 5: Training curves for energy-based model training where \tau is the temperature term in the noise contrastive estimation loss function</figcaption>
 </figure>
 
-<table align="center">
+<table style="display:block; margin: 0 auto;">
   <caption style="caption-side:bottom">Table 1: Final model performance where τ is the temperature term in the noise contrastive estimation loss function</caption>  
   <thead>
     <tr>
