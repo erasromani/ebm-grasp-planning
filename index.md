@@ -44,7 +44,7 @@ A relatively simple network architecture was used for the energy-based model as 
 
 Several transformations were applied to the data before being fed into the network. During training, the grasp angle was first randomly rotated by 180 degrees with a probability of 0.5. This was done such that the resulting energy surface is symmetric across the grasp angle axis. Both the grasp and depth image were then normalized by subtracting from the mean and dividing by the standard deviation.  During validation, only data normalization was applied. 
 
-In order to evaluate network performance throughout training, an alignment metric was monitored and defined as the percentage of positive samples with energy lower than any negative sample in a given batch. Note that throughout all experiments, a relatively large batch size of 512 samples was used to reduce loss and alignment variance.
+In order to evaluate network performance throughout training, an alignment metric was monitored and defined as the percentage of positive samples with energy lower than any negative sample in a given batch. Note that throughout all experiments, a relatively large batch size of 512 samples was used to reduce loss and alignment variance. A learning rate of 1e-4 was used for all experiments.
 
 ## Results
 Figure 5 shows the resulting training curves after 500 epochs of training for 5 different experiments. Experiments only differ by the temperature hyperparameter chosen to study the impact of temperature on training and the resulting energy manifold. 
