@@ -114,7 +114,7 @@ Now that we have a trained energy-based model, we can perform inference by sampl
 
 The video below shows examples of grasp generation by gradient decent on the energy manifold. Note that the resulting grasps appear to be valid grasps.
 
-<video align="center" width="480" height="320" controls>
+<video style="display:block; margin: 0 auto;" width="480" height="320" controls>
   <source type="video/mp4" src="https://erasromani.github.io/ebm-grasp-planning/videos/videos_combined.mp4">
 </video>
 
