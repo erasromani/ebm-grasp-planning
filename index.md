@@ -56,8 +56,40 @@ Figure 5 shows the resulting training curves after 500 epochs of training for 5 
 | 10 | 0.55 | 86.2 |
 | 100 | 0.58 | 86.8 |
 | 1000 | 0.69 | 82.8 |
-
 *Table 1: Final model performance where τ is the temperature term in the noise contrastive estimation loss function*
+
+<table>
+  <caption style="caption-side:bottom">Table 1: Final model performance where τ is the temperature term in the noise contrastive estimation loss function</caption>
+  <thead>
+    <tr>
+      <th style="text-align: center">τ</th>
+      <th style="text-align: center">Contrastive Loss</th>
+      <th style="text-align: center">Alignment (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">0.73</td>
+      <td style="text-align: center">83.8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">0.55</td>
+      <td style="text-align: center">86.2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">100</td>
+      <td style="text-align: center">0.58</td>
+      <td style="text-align: center">86.8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1000</td>
+      <td style="text-align: center">0.69</td>
+      <td style="text-align: center">82.8</td>
+    </tr>
+  </tbody>
+</table>
 
 Results suggest that although higher temperature may yield slightly better performance for the training set, it doesn’t yield better performance for the validation set. The temperature term therefore has no significant impact on model performance.
 
