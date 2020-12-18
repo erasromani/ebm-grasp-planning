@@ -27,6 +27,8 @@ Using a contrastive approach, the energy-based model can be trained by pushing u
 
 ![nce-loss](https://erasromani.github.io/ebm-grasp-planning/images/nce-loss.png)
  
+$$\ell_i = \frac{E_w(x_i, y_i)}{\tau} + \log \left[\exp\left(\frac{-E_w(x_i, y_i)}{\tau}\right) + \sum_{j=1}^{p^-} \exp\left(\frac{-E_w(x_j, \hat{y}_j)}{\tau}\right)\right]$$ 
+
 was used where \tau is the …
 
 ## Experiment Setup
