@@ -51,6 +51,7 @@ Results suggest that although higher temperature may yield slightly better perfo
 Higher temperatures rescale the energy such that a larger number of negative samples contribute to the denominator of the loss function. In doing so, the system pushes up on multiple negative samples throughout each training iteration. The zero temperatures limit effectively yield a system that only pushes up on the most of offending negative sample with the lowest energy.
 
 ![energy-distribution](https://erasromani.github.io/ebm-grasp-planning/images/energy-distribution.png)
+
 *Figure 6: Outputted energy distribution of the energy-based model trained with τ = 100 given the validation set*
 
 Figure 6 shows the outputted energy distribution for the validation set associated with the model trained with temperature equal to 100. Note that the two distributions started out similar but throughout training, the system was able to separate the two distributions by pushing up on energies of negative samples and pushing down on energies of positive samples through minimization of the contrastive loss. 
