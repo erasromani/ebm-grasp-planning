@@ -1,6 +1,6 @@
 {% include header.html %}
 
-In N-dimensional simplex noise, the squared kernel summation radius \\( \frac{1}{n} \\) this is a text.
+In N-dimensional simplex noise, the squared kernel summation radius \\( \frac{1}{n} \\).
 
 $$ r = h = \sqrt{\frac {1} {2}} = \sqrt{\frac {N} {N+1}} \sqrt{\frac {N+1} {2N}} $$
 
