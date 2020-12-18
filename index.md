@@ -43,7 +43,7 @@ Several transformations were applied to the data before being fed into the netwo
 In order to evaluate network performance throughout training, an alignment metric was monitored and defined as the percentage of positive samples with energy lower than any negative sample in a given batch. Note that throughout all experiments, a relatively large batch size of 512 samples was used to reduce loss and alignment variance.
 
 ## Results
-Figure 5 shows the resulting training curves after 500 epochs of training for 5 different experiments. Experiments only differed by the temperature hyperparameter chosen to study the impact of temperature on training and the resulting energy manifold. 
+Figure 5 shows the resulting training curves after 500 epochs of training for 5 different experiments. Experiments only differ by the temperature hyperparameter chosen to study the impact of temperature on training and the resulting energy manifold. 
 
 <figure align="center">
   <img src="https://erasromani.github.io/ebm-grasp-planning/images/training-curves.png" alt="training-curves"/>
