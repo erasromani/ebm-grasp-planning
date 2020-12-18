@@ -47,6 +47,7 @@ Higher temperatures rescale the energy such that a larger number of negative sam
 | 10 | 0.55 | 86.2 |
 | 100 | 0.58 | 86.8 |
 | 1000 | 0.69 | 82.8 |
+
 *Table 1: Final model performance where τ is the temperature term in the noise contrastive estimation loss function*
 
 Figure 6 shows the outputted energy distribution for the validation set associated with the model trained with temperature equal to 100. Note that the two distributions started out similar but throughout training, the system was able to separate the two distributions by pushing up on energies of negative samples and pushing down on energies of positive samples through minimization of the contrastive loss. 
