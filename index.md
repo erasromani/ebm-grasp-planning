@@ -1,5 +1,12 @@
 {% include mathjax.html %}
 
+In N-dimensional simplex noise, the squared kernel summation radius $r^2$ is $\frac 1 2$
+for all values of N. This is because the edge length of the N-simplex $s = \sqrt {\frac {N} {N + 1}}$
+divides out of the N-simplex height $h = s \sqrt {\frac {N + 1} {2N}}$.
+The kerel summation radius $r$ is equal to the N-simplex height $h$.
+
+$$ r = h = \sqrt{\frac {1} {2}} = \sqrt{\frac {N} {N+1}} \sqrt{\frac {N+1} {2N}} $$
+
 **Abstract:** State of the art grasp planning techniques [1]-[3] use a two-stage approach in which scene information is fed to a grasp generator network and the sampled grasp is fed to an evaluator network to both estimate the probability of grasp success and refine the grasp. The key issue with these techniques is that the two stages are disjointed and act independently because no back propagation of gradients takes place between the two networks. This work is motivated by bridging the gap between grasp sampling, evaluation, and refinement with energy-based models. Given a scene, a grasp can be generated, evaluated, and refined in one shot by descending down the energy manifold. Using a contrastive approach, the energy-based model was trained on a subset of the Dexnet 2.0 dataset [1] with a noise contrastive estimation loss function [5]-[7]. Results suggest the energy-based model is able to generalize to new scenes, differentiate good from bad grasps, and generate viable grasps.
 
 ## Introduction
