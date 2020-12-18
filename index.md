@@ -22,6 +22,7 @@ Energy-based models comprise of a surface manifold which associates high energy 
 Using a contrastive approach, the energy-based model can be trained by pushing up on energies of negative samples and pushing down on energies of positive samples. A wide variety of loss functions can be used for such a contrastive approach. In this work, the noise contrastive estimation loss function [5]-[7] given by
  
 $$ L = \frac{1}{n^+} \sum_{i=1}^{n^+} \ell_i $$
+
 $$\ell_i = \frac{E_w(x_i, y_i)}{\tau} + \log \left[\exp\left(\frac{-E_w(x_i, y_i)}{\tau}\right) + \sum_{j=1}^{n^-} \exp\left(\frac{-E_w(x_j, \hat{y}_j)}{\tau}\right)\right]$$ 
 
 was used where \\( E_w(x_i, y_i) \\) is the energy parameterized by \\( w\\) given a depth image \\( x_i \\) and a high-quality grasp \\( y_i \\), \\( E_w(x_i, \hat{y_i}) \\) is the energy given a depth image \\( x_i \\) and a low-quality grasp \\( \hat{y_i}\\), \\( \tau \\) is the temperature hyperparameter, and \\( n^- \\) is the number of negative samples in a given batch.
