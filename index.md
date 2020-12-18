@@ -9,6 +9,7 @@ Grasping has been a long-standing challenge in robotics with a wide range of rea
 <p align="center">
   <img src="https://erasromani.github.io/ebm-grasp-planning/images/two-stage-approach.png" />
 </p>
+
 *Figure 1: Two-stage approach for current state of the art grasp planning techniques (image obtained from Mousavian et al. [2])*
 
 
