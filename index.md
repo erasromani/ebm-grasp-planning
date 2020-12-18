@@ -20,12 +20,10 @@ Energy-based models comprise of a surface manifold which associates high energy 
 
 
 Using a contrastive approach, the energy-based model can be trained by pushing up on energies of negative samples and pushing down on energies of positive samples. A wide variety of loss functions can be used for such a contrastive approach. In this work, the noise contrastive estimation loss function [5]-[7] given by
-
-![nce-loss](https://erasromani.github.io/ebm-grasp-planning/images/nce-loss.png)
  
 $$\ell_i = \frac{E_w(x_i, y_i)}{\tau} + \log \left[\exp\left(\frac{-E_w(x_i, y_i)}{\tau}\right) + \sum_{j=1}^{p^-} \exp\left(\frac{-E_w(x_j, \hat{y}_j)}{\tau}\right)\right]$$ 
 
-was used where \tau is the …
+was used where \\( E_w(x_i, y_i) \\) is the energy parameterized by \\( w\\) given a depth image \\( x_i \\) and a high-quality grasp \\( y_i \\), \\( E_w(x_i, \hat{y_i}) \\) is the energy given a depth image \\( x_i \\) and a low-quality grasp \\( \hat{y_i}\\), \\( \tau \\) is the temperature hyperparameter, and \\( p^- \\) is the number of negative samples in a given batch.
 
 ## Experiment Setup
 A subset of 220,000 examples from the Dexnet 2.0 dataset [1] was used for this work with a 90%/10% split for the training and validation set respectively. The Dexnet 2.0 dataset comprises of a synthetic dataset of 6.7 million depth images and grasps generated from 1,500 unique 3D object models. Figure 3 depicts a sample of the dataset for one object. Note that each depth image is 32 by 32 pixels with one channel while each grasp consists of a 4-dimensional grasp vector given by [grasp_center_row, grasp_center_column, grasp_depth, grasp_quality] where grasp quality is a binary representation of grasp success, 1 for a positive sample with high probability of success and 0 for a negative sample low probability of success. 
