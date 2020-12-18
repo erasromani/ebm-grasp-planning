@@ -3,9 +3,6 @@
 ## Introduction
 Grasping has been a long-standing challenge in robotics with a wide range of real-world application in manufacturing, logistics, and healthcare. Although much progress has been made toward improving generalizability of grasp planning techniques to novel objects over the past few years, the performance of such techniques is not yet at the level required for deployment in industry. State of the art grasp planning techniques [1]-[3] use a two-stage approach, as depicted in Figure 1, in which scene information is fed to a grasp generator network and the sampled grasp is fed to an evaluator network to both estimate the probability of grasp success and refine the grasp. The key issue with these techniques is that the two stages are disjointed and act independently because no back propagation of gradients takes place between the two networks. This work is motivated by bridging the gap between grasp sampling, evaluation, and refinement with energy-based models. 
 
-![two-stage-approach](https://erasromani.github.io/ebm-grasp-planning/images/two-stage-approach.png)
-*Figure 1: Two-stage approach for current state of the art grasp planning techniques (image obtained from Mousavian et al. [2])*
-
 <figure>
   <img src="https://erasromani.github.io/ebm-grasp-planning/images/two-stage-approach.png" alt="two-stage-approach"/>
   <figcaption>Figure 1: Two-stage approach for current state of the art grasp planning techniques (image obtained from Mousavian et al. [2])</figcaption>
