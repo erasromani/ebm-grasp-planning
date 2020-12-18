@@ -42,7 +42,7 @@ Results suggest that although higher temperature may yield slightly better perfo
 Higher temperatures rescale the energy such that a larger number of negative samples contribute to the denominator of the loss function. In doing so, the system pushes up on multiple negative samples throughout each training iteration. The zero temperatures limit effectively yield a system that only pushes up on the most of offending negative sample with the lowest energy.
 
 | τ | Contrastive Loss | Alignment (%) |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | 1 | 0.73 | 83.8 |
 | 10 | 0.55 | 86.2 |
 | 100 | 0.58 | 86.8 |
