@@ -6,11 +6,10 @@ Grasping has been a long-standing challenge in robotics with a wide range of rea
 ![two-stage-approach](https://erasromani.github.io/ebm-grasp-planning/images/two-stage-approach.png)
 *Figure 1: Two-stage approach for current state of the art grasp planning techniques (image obtained from Mousavian et al. [2])*
 
-<p align="center" width="50%">
-  <img src="https://erasromani.github.io/ebm-grasp-planning/images/two-stage-approach.png" />
-</p>
-*Figure 1: Two-stage approach for current state of the art grasp planning techniques (image obtained from Mousavian et al. [2])*
-
+<figure>
+  <img src="{{site.url}}/images/two-stage-approach.png)" alt="tow-stage-approach"/>
+  <figcaption>Figure 1: Two-stage approach for current state of the art grasp planning techniques (image obtained from Mousavian et al. [2])</figcaption>
+</figure>
 
 ## Method
 Energy-based models comprise of a surface manifold which associates high energy to negative samples and low energy to positive samples. In this work, a positive and negative sample is given by a grasp with a high and low probability of success respectively. Upon inference, a grasp can be sampled at random as shown in Figure 2. The energy of the sampled grasp is given by the energy manifold and is associated with the quality of the grasp. The sampled grasp can be refined by descending down the energy manifold towards regions of higher quality grasps. Gasps with relatively high probability of success are found at the local minima of the energy manifold. Note that the energy can be transformed into a probability of grasp success by the Gibbs-Boltzmann distribution but calculating the normalizing partition function may be intractable [4]. The energy formulation therefore allows for representation of complex distribution that may be difficult to represent with probabilistic methods.
