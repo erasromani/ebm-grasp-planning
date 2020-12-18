@@ -1,2 +1,2 @@
-# ebm-grasp-planning
-Grasp planning with energy based models
+# Energy-based Model for Grasp Planning
+Bridging the gap between grasp sampling, evaluation, and refinement
