@@ -9,22 +9,45 @@ Grasping has been a long-standing challenge in robotics with a wide range of rea
 ## Method
 Energy-based models comprise of a surface manifold which associates high energy to negative samples and low energy to positive samples. In this work, a positive and negative sample is given by a grasp with a high and low probability of success respectively. Upon inference, a grasp can be sampled at random as shown in Figure 2. The energy of the sampled grasp is given by the energy manifold and is associated with the quality of the grasp. The sampled grasp can be refined by descending down the energy manifold towards regions of higher quality grasps. Gasps with relatively high probability of success are found at the local minima of the energy manifold. Note that the energy can be transformed into a probability of grasp success by the Gibbs-Boltzmann distribution but calculating the normalizing partition function may be intractable [4]. The energy formulation therefore allows for representation of complex distribution that may be difficult to represent with probabilistic methods.
 
+![ebm-inference](https://github.com/erasromani/ebm-grasp-planning/blob/gh-pages/images/ebm-inference.png)
+*Figure 2: Inference with energy-based models for grasp planning such that grasps are sampled at random, evaluated by the energy value, and refined by descending down the energy manifold toward regions of higher quality grasps*
+
 Using a contrastive approach, the energy-based model can be trained by pushing up on energies of negative samples and pushing down on energies of positive samples. A wide variety of loss functions can be used for such a contrastive approach. In this work, the noise contrastive estimation loss function [5]-[7] given by
+![nce-loss](https://github.com/erasromani/ebm-grasp-planning/blob/gh-pages/images/nce-loss.png)
+was used where \tau is the …
 
 ## Experiment Setup
 A subset of 220,000 examples from the Dexnet 2.0 dataset [1] was used for this work with a 90%/10% split for the training and validation set respectively. The Dexnet 2.0 dataset comprises of a synthetic dataset of 6.7 million depth images and grasps generated from 1,500 unique 3D object models. Figure 3 depicts a sample of the dataset for one object. Note that each depth image is 32 by 32 pixels with one channel while each grasp consists of a 4-dimensional grasp vector given by [grasp_center_row, grasp_center_column, grasp_depth, grasp_quality] where grasp quality is a binary representation of grasp success, 1 for a positive sample with high probability of success and 0 for a negative sample low probability of success. 
 
+![dexnet-2.0](https://github.com/erasromani/ebm-grasp-planning/blob/gh-pages/images/dexnet-2.0.png)
+*Figure 3: Visualization of the Dexnet 2.0 dataset for one object [1]*
+
 A relatively simple network architecture was used for the energy-based model as shown in Figure 4. The depth image is fed into a convolutional feature extractor comprising of four convolutional layers, each made up of a 2D convolution followed by a relu non-linearity and batch-normalization.  The output channels for each layer are 16, 28, 129, and 120 channels respectively. The kernel size of all convolutions is 3 by 3 except for the first layer which has a size of 5 by 5. Similarly, the stride of all convolutions is 2 except for the first layer which has a stride of 1. All features outputted by the feature extractor are flattened into a 1028-dimensional vector. The grasp input is fed to a repeat module which simply expands the 4-dimensional input vector into 1028 dimensions by repeating the grasp vector 256 times. The resulting repeated vector is concatenated with the flattened feature extractor output before being fed into a three layer fully connected network with 8, 9, and 10 output activations respectively. Each layer of the fully connected network consists of a linear layer followed by a relu activation function and a dropout module. The final output of the network is the energy.
 
+![network](https://github.com/erasromani/ebm-grasp-planning/blob/gh-pages/images/network.png)
+*Figure 4: Network architecture for the energy-based model*
+
 Several transformations were applied to the data before being fed into the network. During training, the grasp angle was first randomly rotated by 180 degrees with a probability of 0.5. This was done such that the resulting energy surface is symmetric across the grasp angle axis. Both the grasp and depth image were then normalized by subtracting from the mean and dividing by the standard deviation.  During validation, only data normalization was applied. 
+
 In order to evaluate network performance throughout training, an alignment metric was monitored and defined as the percentage of positive samples with energy lower than any negative sample in a given batch. Note that throughout all experiments, a relatively large batch size of 512 samples was used to reduce loss and alignment variance.
 
 ## Results
 Figure 5 shows the resulting training curves after 500 epochs of training for 5 different experiments. Experiments only differed by the temperature hyperparameter chosen to study the impact of temperature on training and the resulting energy manifold. 
 
+![training-curves](https://github.com/erasromani/ebm-grasp-planning/blob/gh-pages/images/training-curves.png)
+*Figure 5: Training curves for energy-based model training where \tau is the temperature term in the noise contrastive estimation loss function*
+
 Results suggest that although higher temperature may yield slightly better performance for the training set, it doesn’t yield better performance for the validation set. The temperature term therefore has no significant impact on model performance.
 
 Higher temperatures rescale the energy such that a larger number of negative samples contribute to the denominator of the loss function. In doing so, the system pushes up on multiple negative samples throughout each training iteration. The zero temperatures limit effectively yield a system that only pushes up on the most of offending negative sample with the lowest energy.
+
+| τ | Contrastive Loss | Alignment (%) |
+| --- | --- | --- |
+| 1 | 0.73 | 83.8 |
+| 10 | 0.55 | 86.2 |
+| 100 | 0.58 | 86.8 |
+| 1000 | 0.69 | 82.8 |
+*Table 1: Final model performance where τ is the temperature term in the noise contrastive estimation loss function*
 
 Figure 6 shows the outputted energy distribution for the validation set associated with the model trained with temperature equal to 100. Note that the two distributions started out similar but throughout training, the system was able to separate the two distributions by pushing up on energies of negative samples and pushing down on energies of positive samples through minimization of the contrastive loss. 
 
