@@ -59,7 +59,7 @@ Figure 5 shows the resulting training curves after 500 epochs of training for 5 
 
 *Table 1: Final model performance where τ is the temperature term in the noise contrastive estimation loss function*
 
-<table>
+<table class="center">
   <caption style="caption-side:bottom">Table 1: Final model performance where τ is the temperature term in the noise contrastive estimation loss function</caption>  
   <thead>
     <tr>
