@@ -1,3 +1,5 @@
+{% include mathjax.html %}
+
 **Abstract:** State of the art grasp planning techniques [1]-[3] use a two-stage approach in which scene information is fed to a grasp generator network and the sampled grasp is fed to an evaluator network to both estimate the probability of grasp success and refine the grasp. The key issue with these techniques is that the two stages are disjointed and act independently because no back propagation of gradients takes place between the two networks. This work is motivated by bridging the gap between grasp sampling, evaluation, and refinement with energy-based models. Given a scene, a grasp can be generated, evaluated, and refined in one shot by descending down the energy manifold. Using a contrastive approach, the energy-based model was trained on a subset of the Dexnet 2.0 dataset [1] with a noise contrastive estimation loss function [5]-[7]. Results suggest the energy-based model is able to generalize to new scenes, differentiate good from bad grasps, and generate viable grasps.
 
 ## Introduction
