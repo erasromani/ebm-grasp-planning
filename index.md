@@ -69,7 +69,9 @@ Now that we have a trained energy-based model, we can perform inference by sampl
 
 The video below shows examples of grasp generation by gradient decent on the energy manifold. Note that the resulting grasps appear to be valid grasps.
 
-<video src=https://github.com/erasromani/ebm-grasp-planning/blob/gh-pages/videos/videos_combined.mp4 width="320" height="200" controls preload></video>
+<video width="320" height="240" controls>
+  <source type="video/mp4" src="https://github.com/erasromani/ebm-grasp-planning/blob/gh-pages/videos/videos_combined.mp4">
+</video>
 
 ## Conclusion
 We have shown that with energy-based models grasps can be samples, evaluated, and refined in one shot. By doing so, we have been able to bridge the gap between sampling, evaluation, and refinement stage that exists in current state of the art grasp planning techniques and yielded an integrated system. Results suggest the energy-based model is able to generalize to new scenes, differentiate good from bad grasps, and generate grasps that appear viable. The next step is to deploy the model in simulation to properly evaluate the probability of success of the generated grasps.
