@@ -1,3 +1,4 @@
 theme: jekyll-theme-cayman
+show_downloads: false
 title: Energy-based Models for Grasp Planning
 description: Bridging the gap between grasp sampling, evaluation, and refinement
