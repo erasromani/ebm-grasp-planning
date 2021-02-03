@@ -1,10 +1,6 @@
 # Energy-based Model for Grasp Planning
 Bridging the gap between grasp sampling, evaluation, and refinement
 
-{% include header.html %}
-
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 **Abstract:** State of the art grasp planning techniques use a two-stage approach in which scene information is fed to a grasp generator network and the sampled grasp is fed to an evaluator network to both estimate the probability of grasp success and refine the grasp. The key issue with these techniques is that the two stages are disjointed and act independently because no back propagation of gradients takes place between the two networks. This work is motivated by bridging the gap between grasp sampling, evaluation, and refinement with energy-based models. Given a scene, a grasp can be generated, evaluated, and refined in one shot by descending down the energy manifold. Using a contrastive approach, the energy-based model was trained on ~200,000 examples with a noise contrastive estimation loss function. Results suggest the energy-based model is able to generalize to new scenes, differentiate good from bad grasps, and generate viable grasps.
 
 ## Introduction
